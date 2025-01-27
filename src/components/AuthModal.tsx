@@ -19,32 +19,42 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
     
     if (isLogin) {
       // Login logic
-      const user = localStorage.getItem("user");
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      const user = users.find((u: any) => u.email === email && u.password === password);
+      
       if (user) {
-        const userData = JSON.parse(user);
-        if (userData.email === email && userData.password === password) {
-          toast({
-            title: "Success",
-            description: "Logged in successfully",
-          });
-          onClose();
-        } else {
-          toast({
-            title: "Error",
-            description: "Invalid credentials",
-            variant: "destructive",
-          });
-        }
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        toast({
+          title: "Success",
+          description: "Logged in successfully",
+        });
+        onClose();
       } else {
         toast({
           title: "Error",
-          description: "User not found",
+          description: "Invalid credentials",
           variant: "destructive",
         });
       }
     } else {
       // Signup logic
-      localStorage.setItem("user", JSON.stringify({ email, password }));
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      const existingUser = users.find((u: any) => u.email === email);
+      
+      if (existingUser) {
+        toast({
+          title: "Error",
+          description: "Email already exists",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      const newUser = { email, password };
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("currentUser", JSON.stringify(newUser));
+      
       toast({
         title: "Success",
         description: "Account created successfully",

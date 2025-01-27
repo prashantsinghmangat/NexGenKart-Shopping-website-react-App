@@ -9,14 +9,14 @@ const Header = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem("currentUser");
     if (user) {
       setIsLoggedIn(true);
     }
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("currentUser");
     setIsLoggedIn(false);
   };
 
@@ -87,6 +87,15 @@ const CartItemCount = () => {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCount(cart.length);
+
+    // Update count when cart changes
+    const handleStorageChange = () => {
+      const updatedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+      setCount(updatedCart.length);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   return count > 0 ? (

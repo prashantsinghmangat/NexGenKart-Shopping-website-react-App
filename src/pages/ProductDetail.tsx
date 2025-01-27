@@ -18,6 +18,16 @@ const ProductDetail = () => {
   }
 
   const handleAddToCart = () => {
+    const user = localStorage.getItem("currentUser");
+    if (!user) {
+      toast({
+        title: "Error",
+        description: "Please login to add items to cart",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const existingItem = cart.find((item: any) => item.id === product.id);
 
@@ -28,6 +38,10 @@ const ProductDetail = () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    
+    // Trigger storage event for cart count update
+    window.dispatchEvent(new Event("storage"));
+    
     toast({
       title: "Success",
       description: "Product added to cart",
@@ -35,8 +49,18 @@ const ProductDetail = () => {
   };
 
   const handleBuyNow = () => {
+    const user = localStorage.getItem("currentUser");
+    if (!user) {
+      toast({
+        title: "Error",
+        description: "Please login to proceed with purchase",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     handleAddToCart();
-    navigate("/cart");
+    navigate("/checkout");
   };
 
   return (
