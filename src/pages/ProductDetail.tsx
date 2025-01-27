@@ -39,8 +39,8 @@ const ProductDetail = () => {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     
-    // Trigger storage event for cart count update
-    window.dispatchEvent(new Event("storage"));
+    // Dispatch custom event for cart update
+    window.dispatchEvent(new CustomEvent("cartUpdated"));
     
     toast({
       title: "Success",
