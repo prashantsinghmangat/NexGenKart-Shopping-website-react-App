@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { products } from "@/data/products";
@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 const ProductDetail = () => {
   const { id } = useParams();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
 
   const product = products.find((p) => p.id === Number(id));
@@ -31,6 +32,11 @@ const ProductDetail = () => {
       title: "Success",
       description: "Product added to cart",
     });
+  };
+
+  const handleBuyNow = () => {
+    handleAddToCart();
+    navigate("/cart");
   };
 
   return (
@@ -70,7 +76,9 @@ const ProductDetail = () => {
               <ShoppingCart className="mr-2 h-4 w-4" />
               Add to Cart
             </Button>
-            <Button variant="secondary">Buy Now</Button>
+            <Button variant="secondary" onClick={handleBuyNow}>
+              Buy Now
+            </Button>
           </div>
         </div>
       </div>
