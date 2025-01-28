@@ -15,7 +15,6 @@ const Header = () => {
       setIsLoggedIn(true);
     }
 
-    // Update cart count
     const updateCartCount = () => {
       const cart = JSON.parse(localStorage.getItem("cart") || "[]");
       setCartCount(cart.length);
@@ -49,9 +48,20 @@ const Header = () => {
               <Link to="/products" className="text-gray-600 hover:text-primary">
                 Products
               </Link>
+              <Link to="/blog" className="text-gray-600 hover:text-primary">
+                Blog
+              </Link>
               <Link to="/about" className="text-gray-600 hover:text-primary">
                 About Us
               </Link>
+              <a 
+                href="https://prashantsinghmangat.netlify.app/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-primary"
+              >
+                Portfolio
+              </a>
             </nav>
 
             <div className="flex items-center space-x-4">

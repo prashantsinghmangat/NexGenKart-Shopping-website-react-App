@@ -7,6 +7,9 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +25,9 @@ const App = () => (
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
           </Routes>
         </main>
         <Footer />

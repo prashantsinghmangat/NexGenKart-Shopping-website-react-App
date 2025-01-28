@@ -35,14 +35,24 @@ const Footer = () => {
                   About Us
                 </Link>
               </li>
+              <li>
+                <a 
+                  href="https://prashantsinghmangat.netlify.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Portfolio
+                </a>
+              </li>
             </ul>
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-400">
-              <li>Email: support@shopverse.com</li>
-              <li>Phone: (555) 123-4567</li>
-              <li>Address: 123 Shop Street, City, Country</li>
+              <li>Email: Prashantsinghmangat5@gmail.com</li>
+              <li>Phone: 8360334018</li>
+              <li>Location: Meerut, Uttar Pradesh, India</li>
             </ul>
           </div>
           <div>
@@ -63,7 +73,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 ShopVerse. All rights reserved.</p>
+          <p>&copy; 2024 NexGen FreshKart. All rights reserved.</p>
         </div>
       </div>
     </footer>
