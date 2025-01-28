@@ -42,7 +42,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <Link to={`/product/${product.id}`} className="group">
+    <Link to={`/products/${product.id}`} className="group">
       <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden">
         <div className="aspect-square overflow-hidden">
           <img
