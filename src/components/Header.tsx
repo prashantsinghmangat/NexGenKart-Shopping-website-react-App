@@ -40,8 +40,12 @@ const Header = () => {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link to="/" className="text-2xl font-bold text-primary">
-              NexGen FreshKart
+            <Link to="/" className="flex items-center space-x-2">
+              <img 
+                src="/lovable-uploads/346aa97f-c150-44a5-8d58-198664e53e1d.png" 
+                alt="NexGen Grocery Logo" 
+                className="h-12 w-auto"
+              />
             </Link>
             
             <nav className="hidden md:flex items-center space-x-6">

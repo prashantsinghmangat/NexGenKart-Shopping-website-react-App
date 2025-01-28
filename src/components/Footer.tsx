@@ -5,8 +5,12 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-4">About Us</h3>
+          <div className="flex flex-col items-center md:items-start">
+            <img 
+              src="/lovable-uploads/346aa97f-c150-44a5-8d58-198664e53e1d.png" 
+              alt="NexGen Grocery Logo" 
+              className="h-16 w-auto mb-4 bg-white p-2 rounded"
+            />
             <p className="text-gray-400">
               We are dedicated to providing the best shopping experience with
               quality products and excellent customer service.
