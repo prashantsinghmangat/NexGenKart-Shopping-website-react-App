@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
 const Checkout = () => {
@@ -9,13 +10,15 @@ const Checkout = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    email: "",
     address: "",
     pincode: "",
-    upiId: "",
+    instructions: ""
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -43,87 +46,108 @@ const Checkout = () => {
     localStorage.setItem("cart", "[]");
     
     toast({
-      title: "Success",
-      description: "Order placed successfully!",
+      title: "Order Placed Successfully!",
+      description: "Thank you for shopping with NexGen FreshKart",
     });
+    
+    // Dispatch event to update cart count in header
+    window.dispatchEvent(new Event("cartUpdated"));
     
     navigate("/order-confirmation", { state: { orderDetails } });
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">Checkout</h1>
-      <form onSubmit={handleSubmit} className="max-w-md space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-1">
-            Full Name
-          </label>
-          <Input
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
+      <div className="max-w-2xl mx-auto">
+        <div className="text-center mb-8">
+          <img 
+            src="/lovable-uploads/b6ef4f3b-2ab1-44fc-a68d-de7f0f2e6563.png" 
+            alt="NexGen FreshKart Logo" 
+            className="h-16 mx-auto mb-4"
           />
+          <h1 className="text-2xl font-bold text-gray-800">Checkout</h1>
         </div>
-        
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium mb-1">
-            Phone Number
-          </label>
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="address" className="block text-sm font-medium mb-1">
-            Delivery Address
-          </label>
-          <Input
-            id="address"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="pincode" className="block text-sm font-medium mb-1">
-            Pincode
-          </label>
-          <Input
-            id="pincode"
-            name="pincode"
-            value={formData.pincode}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="upiId" className="block text-sm font-medium mb-1">
-            UPI ID
-          </label>
-          <Input
-            id="upiId"
-            name="upiId"
-            value={formData.upiId}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        
-        <Button type="submit" className="w-full">
-          Confirm Order
-        </Button>
-      </form>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              Full Name
+            </label>
+            <Input
+              id="name"
+              name="name"
+              type="text"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your full name"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email Address
+            </label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+              Delivery Address
+            </label>
+            <Textarea
+              id="address"
+              name="address"
+              required
+              value={formData.address}
+              onChange={handleChange}
+              placeholder="Enter your full address"
+              className="min-h-[100px]"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="pincode" className="block text-sm font-medium text-gray-700 mb-1">
+              Pincode
+            </label>
+            <Input
+              id="pincode"
+              name="pincode"
+              type="text"
+              required
+              value={formData.pincode}
+              onChange={handleChange}
+              placeholder="Enter your pincode"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="instructions" className="block text-sm font-medium text-gray-700 mb-1">
+              Delivery Instructions (Optional)
+            </label>
+            <Textarea
+              id="instructions"
+              name="instructions"
+              value={formData.instructions}
+              onChange={handleChange}
+              placeholder="Any special instructions for delivery"
+              className="min-h-[80px]"
+            />
+          </div>
+
+          <Button type="submit" className="w-full">
+            Place Order
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };

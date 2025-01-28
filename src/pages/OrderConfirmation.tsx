@@ -20,6 +20,11 @@ const OrderConfirmation = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-md mx-auto text-center">
+        <img 
+          src="/lovable-uploads/b6ef4f3b-2ab1-44fc-a68d-de7f0f2e6563.png" 
+          alt="NexGen FreshKart Logo" 
+          className="h-16 mx-auto mb-4"
+        />
         <CheckCircle className="mx-auto h-16 w-16 text-green-500 mb-4" />
         <h1 className="text-2xl font-bold mb-4">Order Confirmed!</h1>
         <p className="text-gray-600 mb-6">
@@ -30,8 +35,9 @@ const OrderConfirmation = () => {
           <h2 className="font-semibold mb-4">Order Details</h2>
           <div className="space-y-2">
             <p><span className="font-medium">Name:</span> {orderDetails.name}</p>
-            <p><span className="font-medium">Phone:</span> {orderDetails.phone}</p>
+            <p><span className="font-medium">Email:</span> {orderDetails.email}</p>
             <p><span className="font-medium">Address:</span> {orderDetails.address}</p>
+            <p><span className="font-medium">Pincode:</span> {orderDetails.pincode}</p>
             <p><span className="font-medium">Total:</span> ${orderDetails.total.toFixed(2)}</p>
           </div>
         </div>
