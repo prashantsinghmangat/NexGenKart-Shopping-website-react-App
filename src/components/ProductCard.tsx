@@ -56,7 +56,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <h3 className="font-semibold text-gray-800 mb-2">{product.name}</h3>
           <div className="flex items-center justify-between">
             <p className="text-lg font-bold text-primary">
-              ${product.price.toFixed(2)}
+              ₹{product.price.toFixed(2)}
             </p>
             <Button
               onClick={handleAddToCart}

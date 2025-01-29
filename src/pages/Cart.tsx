@@ -62,7 +62,7 @@ const Cart = () => {
                 />
                 <div className="flex-grow">
                   <h3 className="font-semibold">{item.name}</h3>
-                  <p className="text-gray-500">${item.price.toFixed(2)}</p>
+                  <p className="text-gray-500">₹{item.price.toFixed(2)}</p>
                   <div className="flex items-center space-x-2 mt-2">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
@@ -93,7 +93,7 @@ const Cart = () => {
               <h2 className="text-xl font-semibold">Order Summary</h2>
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>${total.toFixed(2)}</span>
+                <span>₹{total.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
@@ -102,7 +102,7 @@ const Cart = () => {
               <div className="border-t pt-4">
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>₹{total.toFixed(2)}</span>
                 </div>
               </div>
               <Button
